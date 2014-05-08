@@ -26,7 +26,7 @@ public class Main {
 		parser.displayArray();
 		
 		PathSearcher pSearcher = new DepthFirstPathSearcher(array, parser.getVertNumber());
-		
+		System.out.println(pSearcher.searchForPath(0, 9));
 		
 	
 	}
