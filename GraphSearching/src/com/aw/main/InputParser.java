@@ -2,6 +2,7 @@ package com.aw.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.lang.annotation.Target;
 
 import org.omg.CORBA.StringValueHelper;
 public class InputParser {
@@ -9,6 +10,8 @@ public class InputParser {
 	private BufferedReader bReader;
 	private Integer vertNumber;
 	int[][] edges = null;
+	private Integer source;
+	private Integer target;
 
 	public InputParser(BufferedReader breader) {
 		bReader = breader;
@@ -24,6 +27,8 @@ public class InputParser {
 		
 		edges = new int[vertNumber][vertNumber]; //initialize to zero
 		
+		foundSourceAndTarget(bReader.readLine());
+		
 		while((line = bReader.readLine()) != null) {
 			int spaceIndex = line.indexOf(" ");
 			
@@ -37,7 +42,24 @@ public class InputParser {
 		return edges;
 		
 	}
+	
+	public Integer getSource() {
+		return source;
+	}
+	
+	public Integer getTarget() {
+		return target;
+	}
 
+	private void foundSourceAndTarget(String line) {
+		int spaceIndex = line.indexOf(" ");
+
+		String firstVertex = line.substring(0, spaceIndex);
+		String secondVertex = line.substring(spaceIndex+1);		
+		source = Integer.parseInt(firstVertex.trim());
+		target = Integer.parseInt(secondVertex.trim());
+		
+	}
 	private void removeAnyLoops() {
 		for(int i = 0; i < vertNumber; i++) {
 			edges[i][i] = 0;
@@ -45,8 +67,8 @@ public class InputParser {
 	}
 
 	private void setEdge(String firstVertex, String secondVertex) {
-		edges[Integer.parseInt(firstVertex)][Integer.parseInt(secondVertex)] = 1;
-		edges[Integer.parseInt(secondVertex)][Integer.parseInt(firstVertex)] = 1;
+		edges[Integer.parseInt(firstVertex.trim())][Integer.parseInt(secondVertex.trim())] = 1;
+		edges[Integer.parseInt(secondVertex.trim())][Integer.parseInt(firstVertex.trim())] = 1;
 
 		
 	}
