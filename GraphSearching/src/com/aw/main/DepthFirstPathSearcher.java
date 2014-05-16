@@ -11,6 +11,7 @@ public class DepthFirstPathSearcher implements PathSearcher{
 	private int[][] edges;
 	private Integer verticesNumber;
 	private int[] visited;
+	private String solution = new String();
 
 	public DepthFirstPathSearcher(int[][] array, Integer vertNumber) {
 		edges = array;
@@ -42,15 +43,16 @@ public class DepthFirstPathSearcher implements PathSearcher{
 	public String searchForPath(Integer source, Integer target) {
 		if (searchRecursively(source, target) == true) {
 			System.out.println(source + ".");
-			return "Founded the path.";
+			return solution += "\n Found the path.";
 		} else {
-			return "Path not found";
+			return solution = "Path not found";
 		}
 	}
 
 	public boolean searchRecursively(Integer element, Integer target) {
 		if(element == target) {
 			System.out.println("Start : ");
+			solution = "Start : ";
 			return true;
 		}
 		visited[element] = 1;
@@ -58,6 +60,7 @@ public class DepthFirstPathSearcher implements PathSearcher{
 			if(edges[element][j] == 1 && visited[j] == 0) {
 				if(searchRecursively(j, target) == true) {
 					System.out.print(j + ", ");
+					solution += j + ", ";
 					return true;
 				}
 			}
