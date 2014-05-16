@@ -9,12 +9,12 @@ public class OutputParser {
 	static public void printToFile(String fileName, String message) {
 		BufferedWriter bWriter = null;
 		try {
-			bWriter = new BufferedWriter(new FileWriter("results" + System.currentTimeMillis() + ".txt"));
+			bWriter = new BufferedWriter(new FileWriter(fileName));
 			bWriter.write(message);
 			bWriter.flush();
 		} catch (IOException e) {
-			System.out.println("Something is not right with this file");
-			e.printStackTrace();
+			System.out.println("Could not write to output file");
+			System.exit(-1);
 		}
 		
 		

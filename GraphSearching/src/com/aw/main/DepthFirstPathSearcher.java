@@ -43,7 +43,7 @@ public class DepthFirstPathSearcher implements PathSearcher{
 	public String searchForPath(Integer source, Integer target) {
 		if (searchRecursively(source, target) == true) {
 			System.out.println(source + ".");
-			return solution += "\n Found the path.";
+			return solution += source + ". \nFound the path.";
 		} else {
 			return solution = "Path not found";
 		}
@@ -70,8 +70,7 @@ public class DepthFirstPathSearcher implements PathSearcher{
 	}
 	@Override
 	public String displayLastResult() {
-		// TODO Auto-generated method stub
-		return null;
+		return solution;
 	}
 
 }
